@@ -1,19 +1,19 @@
 from django.db import models
 
-# Create your models here.
-
 class Skill(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Nombre")
-    logo = models.ImageField(upload_to='skills/images/', verbose_name="Logo")
-    version = models.CharField(max_length=50, blank=True, null=True, verbose_name="Versión (Opcional)")
+    name = models.CharField(max_length=100, verbose_name="Name")
     
-    # Orden personalizado para que puedas decidir cuál sale primero
-    order = models.IntegerField(default=0, verbose_name="Orden de aparición")
+    # Para skills, generalmente un solo logo vectorial (SVG o PNG transparente) basta para todos los tamaños.
+    # Pero si quieres especificidad, puedes dejar los 3. Por simplicidad, empecemos con 1 logo principal.
+    logo = models.ImageField(upload_to='skills/images/', verbose_name="Logo")
+    
+    version = models.CharField(max_length=50, blank=True, null=True, verbose_name="Version")
+    order = models.IntegerField(default=0, verbose_name="Display Order")
 
     class Meta:
-        verbose_name = "Habilidad"
-        verbose_name_plural = "Habilidades"
-        ordering = ['order', 'name'] # Ordenar por tu número manual, luego alfabético
+        verbose_name = "Skill"
+        verbose_name_plural = "Skills"
+        ordering = ['order', 'name']
 
     def __str__(self):
         return self.name

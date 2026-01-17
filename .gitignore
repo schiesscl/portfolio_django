@@ -14,3 +14,6 @@ staticfiles/
 
 # Windows
 Thumbs.db
+
+/index.html
+assets/
