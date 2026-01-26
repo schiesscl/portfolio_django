@@ -157,3 +157,8 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
+# En PythonAnywhere gratuito, necesitamos indicarle a las librerías que usen el proxy
+if 'PYTHONANYWHERE_DOMAIN' in os.environ:
+    os.environ['http_proxy'] = "http://proxy.server:3128"
+    os.environ['https_proxy'] = "http://proxy.server:3128"
