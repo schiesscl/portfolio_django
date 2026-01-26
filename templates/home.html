@@ -104,7 +104,7 @@
                             {% endif %}
                             
                             <h5 class="mt-3">{{ skill.name }}</h5>
-                            <div class="skill-comment-space">{{ skill.version }}</div>
+                            <div class="skill-comment-space">{{ skill.version|default:"" }}</div>
                         </div>
                     </div>
                     {% endfor %}
