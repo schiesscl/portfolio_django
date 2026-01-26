@@ -40,12 +40,12 @@ $(document).ready(function() {
     });
 
     // Validación del formulario
-    $("#form-contacto").submit(function(event) {
+    $("#contact-form").submit(function(event) {
         // Usamos .val() de JQuery para obtener valores
         // CAMBIO: Usamos 'const' en lugar de 'var'
-        const nombre = $("#contacto-nombre").val();
-        const asunto = $("#contacto-asunto").val();
-        const mensaje = $("#contacto-mensaje").val();
+        const nombre = $("#contact-name").val();
+        const asunto = $("#contact-subject").val();
+        const mensaje = $("#contact-message").val();
         
         // Validación básica
         if (nombre.length < 8 || asunto.length < 8 || mensaje.length < 15) {
