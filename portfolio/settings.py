@@ -148,12 +148,11 @@ CLOUDINARY_STORAGE = {
 
 # Configuración de Almacenamiento (Django 4.2+ y Django 6)
 STORAGES = {
-    # Media: SIEMPRE a Cloudinary (tanto en local como en prod)
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    # Estáticos: WhiteNoise para producción
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # CAMBIO AQUÍ: Quita la palabra 'Manifest'
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
