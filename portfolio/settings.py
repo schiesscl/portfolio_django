@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import socket
 
 # Cargar variables de entorno
 load_dotenv()
@@ -158,7 +159,18 @@ STORAGES = {
     },
 }
 
-# En PythonAnywhere gratuito, necesitamos indicarle a las librerías que usen el proxy
+# ==============================================================================
+# CONFIGURACIÓN DE PROXY PARA PYTHONANYWHERE (CUENTA GRATUITA)
+# ==============================================================================
+# Las cuentas gratuitas requieren usar un proxy específico para salir a internet.
+# Si detectamos que estamos en PA, configuramos las variables de entorno manualmente
+# para que librerías como Cloudinary o Requests funcionen.
+
+
 if 'PYTHONANYWHERE_DOMAIN' in os.environ:
-    os.environ['http_proxy'] = "http://proxy.server:3128"
-    os.environ['https_proxy'] = "http://proxy.server:3128"
+    # Proxy oficial de PythonAnywhere para cuentas gratuitas
+    proxy_address = "http://proxy.server:3128"
+    os.environ['http_proxy'] = proxy_address
+    os.environ['https_proxy'] = proxy_address
+    os.environ['HTTP_PROXY'] = proxy_address
+    os.environ['HTTPS_PROXY'] = proxy_address
