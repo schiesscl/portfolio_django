@@ -23,13 +23,13 @@
             <p>I am eager to contribute to the success of challenging and dynamic projects.</p>
         </div>
 
-        <!-- Projects (Dinámico desde BD) -->
+        <!-- Projects (Static Path Version) -->
         <div id="projects" class="container py-5">
             <h2 class="text-center mb-3">Projects</h2>
             <div class="row">
                 {% for project in projects %}
                 <div class="col-md-6 mb-3">
-                    <div class="card h-100 text-dark"> <!-- text-dark para sobreescribir el blanco del body -->
+                    <div class="card h-100 text-dark">
                         {% if project.url_site %}
                             <a href="{{ project.url_site }}" class="card-img-link" target="_blank">
                         {% else %}
@@ -37,17 +37,21 @@
                         {% endif %}
                             
                             <div class="card-img-wrapper">
-                                <!-- Lógica de imágenes responsivas -->
                                 <picture>
                                     {% if project.image_desktop %}
-                                        <source media="(min-width: 992px)" srcset="{{ project.image_desktop.url }}">
+                                        <!-- Desktop (Default grande) -->
+                                        <source media="(min-width: 992px)" srcset="{% static project.image_desktop %}">
+                                        
+                                        <!-- Tablet -->
                                         {% if project.image_tablet %}
-                                            <source media="(min-width: 576px)" srcset="{{ project.image_tablet.url }}">
+                                            <source media="(min-width: 576px)" srcset="{% static project.image_tablet %}">
                                         {% endif %}
+                                        
+                                        <!-- Mobile (Fallback img tag) -->
                                         {% if project.image_mobile %}
-                                            <img src="{{ project.image_mobile.url }}" class="card-img-top" alt="{{ project.title }}">
+                                            <img src="{% static project.image_mobile %}" class="card-img-top" alt="{{ project.title }}">
                                         {% else %}
-                                            <img src="{{ project.image_desktop.url }}" class="card-img-top" alt="{{ project.title }}">
+                                            <img src="{% static project.image_desktop %}" class="card-img-top" alt="{{ project.title }}">
                                         {% endif %}
                                     {% endif %}
                                 </picture>
@@ -63,7 +67,6 @@
                             <h5 class="card-title">{{ project.title }}</h5>
                             <p class="card-text">{{ project.description }}</p>
                             
-                            <!-- Tech Stack (Skills del proyecto) -->
                             {% if project.skills.all %}
                             <div class="mt-2">
                                 <small class="text-muted">Stack:</small><br>
@@ -88,11 +91,10 @@
             </div>
         </div>
 
-        <!-- Skills (Dinámico desde BD) -->
+        <!-- Skills (Static Path Version) -->
         <div id="skills" class="container py-5">
             <h2 class="text-center mb-4">Skills</h2>
             
-            <!-- Carrusel Bootstrap -->
             <div id="skillsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
                     {% for skill in skills %}
@@ -100,7 +102,8 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             
                             {% if skill.logo %}
-                                <img src="{{ skill.logo.url }}" class="skill-logo" alt="{{ skill.name }}" style="max-height: 100px;">
+                                <!-- OJO: Aquí usamos static skill.logo -->
+                                <img src="{% static skill.logo %}" class="skill-logo" alt="{{ skill.name }}" style="max-height: 100px;">
                             {% endif %}
                             
                             <h5 class="mt-3">{{ skill.name }}</h5>

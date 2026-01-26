@@ -6,10 +6,10 @@ class Project(models.Model):
     title = models.CharField(max_length=200, verbose_name="Title")
     description = models.TextField(verbose_name="Description")
     
-    # Imágenes Responsivas (Manual upload)
-    image_desktop = models.ImageField(upload_to='projects/images/desktop/', verbose_name="Desktop Image")
-    image_tablet = models.ImageField(upload_to='projects/images/tablet/', blank=True, null=True, verbose_name="Tablet Image")
-    image_mobile = models.ImageField(upload_to='projects/images/mobile/', blank=True, null=True, verbose_name="Mobile Image")
+    # Rutas relativas a la carpeta static (ej: "img/projects/desktop/proyecto1.webp")
+    image_desktop = models.CharField(max_length=255, verbose_name="Static Path (Desktop)")
+    image_tablet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Static Path (Tablet)")
+    image_mobile = models.CharField(max_length=255, blank=True, null=True, verbose_name="Static Path (Mobile)")
     
     url_site = models.URLField(blank=True, null=True, verbose_name="Website URL")
     url_repository = models.URLField(blank=True, null=True, verbose_name="Repository URL")
