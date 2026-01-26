@@ -1,0 +1,69 @@
+{% load static %}
+
+<!-- Projects (Dinámico desde BD) -->
+<div id="projects" class="container py-5">
+    <h2 class="text-center mb-3">Projects</h2>
+    <div class="row">
+        {% for project in projects %}
+        <div class="col-md-6 mb-3">
+            <div class="card h-100 text-dark">
+                {% if project.url_site %}
+                    <a href="{{ project.url_site }}" class="card-img-link" target="_blank">
+                {% else %}
+                    <div class="card-img-link">
+                {% endif %}
+                    
+                    <div class="card-img-wrapper">
+                        <picture>
+                            {% if project.image_desktop %}
+                                <!-- Desktop -->
+                                <source media="(min-width: 992px)" srcset="{% static project.image_desktop %}">
+                                
+                                <!-- Tablet -->
+                                {% if project.image_tablet %}
+                                    <source media="(min-width: 576px)" srcset="{% static project.image_tablet %}">
+                                {% endif %}
+                                
+                                <!-- Mobile -->
+                                {% if project.image_mobile %}
+                                    <img src="{% static project.image_mobile %}" class="card-img-top" alt="{{ project.title }}">
+                                {% else %}
+                                    <img src="{% static project.image_desktop %}" class="card-img-top" alt="{{ project.title }}">
+                                {% endif %}
+                            {% endif %}
+                        </picture>
+                    </div>
+
+                {% if project.url_site %}
+                    </a>
+                {% else %}
+                    </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    
+                    {% if project.skills.all %}
+                    <div class="mt-2">
+                        <small class="text-muted">Stack:</small><br>
+                        {% for skill in project.skills.all %}
+                            <span class="badge bg-secondary">{{ skill.name }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="card-footer">
+                    {% if project.url_site %}
+                        <small class="text-muted"><a href="{{ project.url_site }}" target="_blank">Website 🌐</a></small>
+                    {% endif %}
+                    {% if project.url_repository %}
+                        <small class="text-muted ms-2"><a href="{{ project.url_repository }}" target="_blank"><img src="{% static 'img/githubico.webp' %}" alt="Github" class="githubico"></a></small>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
