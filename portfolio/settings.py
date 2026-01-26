@@ -83,20 +83,13 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
 # ==============================================================================
-# BASE DE DATOS (MySQL)
+# BASE DE DATOS (SQLite para Todos)
 # ==============================================================================
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'portfolio_db'),
-        'USER': os.getenv('DB_USER', 'root'),           # Tu usuario local (root)
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),       # Tu contraseña local (si tienes)
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),      # Localhost
-        'PORT': os.getenv('DB_PORT', '3306'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

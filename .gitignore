@@ -17,3 +17,11 @@ Thumbs.db
 
 /index.html
 assets/
+
+.github/
+.agent/
+.agents/
+.claude/
+.gemini/
+.opencode/
+.windsurf/
