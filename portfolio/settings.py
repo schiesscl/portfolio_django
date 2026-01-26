@@ -146,7 +146,14 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
 
-# Lógica Inteligente para Almacenamiento
-# Si DEBUG es False (Producción), usar Cloudinary. Si es True (Local), usar disco local.
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Configuración de Almacenamiento (Django 4.2+ y Django 6)
+STORAGES = {
+    # Media: SIEMPRE a Cloudinary (tanto en local como en prod)
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    # Estáticos: WhiteNoise para producción
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
