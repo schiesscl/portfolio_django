@@ -15,10 +15,37 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-image: linear-gradient(to right, #00A0E8, #ECA0BE);
-    transition: background-image 0.5s ease-in-out;
+    position: relative;
+    z-index: 0;
+    background-color: #00A0E8; /* Color de respaldo */
+
     font-family: var(--font-text);
     font-weight: 300;
+}
+
+/* Pseudo-elementos para gestionar la transición del degradado del body */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Se colocan detrás del contenido */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Capa 1: Tema Default */
+body::before {
+    background-image: linear-gradient(to right, #00A0E8, #ECA0BE);
+    opacity: 1;
+}
+
+/* Capa 2: Tema Alternativo (Invisible por defecto) */
+body::after {
+    background-image: linear-gradient(to right, #838885, #c1a0a0, #ECA0BE);
+    opacity: 0;
 }
 
 main {
@@ -82,8 +109,9 @@ p {
    4. NAVEGACIÓN
    ======================================== */
 .navbar {
-    background-color: transparent;
-    background-image: linear-gradient(to right, rgba(0, 160, 232, 0.9), rgba(0, 160, 232, 0.9));
+    /* Cambiamos a background-color para permitir transición suave */
+    background-color: rgba(0, 160, 232, 0.9);
+    transition: background-color 0.5s ease-in-out;
 }
 
 .navbar-nav .nav-link,
@@ -107,6 +135,25 @@ p {
   font-size: 1.8rem;
   text-transform: uppercase;
 }
+
+/* --- NUEVO CÓDIGO: Efectos de Hover en Imágenes de Proyectos --- */
+.card-img-wrapper {
+  overflow: hidden; /* Mantiene la imagen dentro de los límites al hacer zoom */
+  /* Replica el radio de borde superior (border-radius) típico de las cards de Bootstrap */
+  border-top-left-radius: calc(0.375rem - 1px);
+  border-top-right-radius: calc(0.375rem - 1px);
+}
+
+.card-img-top {
+  transition: transform 0.4s ease, filter 0.4s ease; /* Transición suave para el efecto */
+}
+
+/* Al pasar el mouse sobre el link/contenedor, aplicamos los efectos a la imagen */
+.card-img-link:hover .card-img-top {
+  transform: scale(1.05);       /* Pequeño zoom */
+  filter: brightness(1.15);     /* Efecto de iluminación (+15% brillo) */
+}
+/* --------------------------------------------------------------- */
 
 .card-text,
 .description,
@@ -271,12 +318,17 @@ footer img:hover {
 /* ========================================
    11. TEMA ALTERNATIVO
    ======================================== */
-body.theme-alternative {
-    background-image: linear-gradient(to right, #838885, #c1a0a0, #ECA0BE);
+/* En lugar de cambiar el background, hacemos visible la capa ::after */
+body.theme-alternative::after {
+    opacity: 1;
 }
 
+/* (Opcional) Puedes quitar la regla antigua de body.theme-alternative que tenía el background-image */
+/* body.theme-alternative { ... } */
+
 body.theme-alternative .navbar {
-    background-image: linear-gradient(to right, rgba(131, 136, 133, 0.9), rgba(131, 136, 133, 0.9));
+    /* Usamos background-color sólido para transición suave */
+    background-color: rgba(131, 136, 133, 0.9);
 }
 
 body.theme-alternative #contact-form input[type="submit"],
