@@ -11,6 +11,9 @@ class Project(models.Model):
     image_tablet = models.CharField(max_length=255, blank=True, null=True, verbose_name="Static Path (Tablet)")
     image_mobile = models.CharField(max_length=255, blank=True, null=True, verbose_name="Static Path (Mobile)")
     
+    # NUEVO CAMPO: Ícono opcional para el botón de enlace
+    icon = models.CharField(max_length=255, blank=True, null=True, verbose_name="Static Path (Button Icon)", help_text="Ej: img/icons/cj.svg")
+    
     url_site = models.URLField(blank=True, null=True, verbose_name="Website URL")
     url_repository = models.URLField(blank=True, null=True, verbose_name="Repository URL")
     

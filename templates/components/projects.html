@@ -54,13 +54,22 @@
                     {% endif %}
                 </div>
 
-                <div class="card-footer">
+                <div class="card-footer d-flex align-items-center">
                     {% if project.url_site %}
-                        <small class="text-muted"><a href="{{ project.url_site }}" target="_blank">Website 🌐</a></small>
+                        <a href="{{ project.url_site }}" target="_blank" class="text-decoration-none me-3" title="Visit Website">
+                            
+                            {% if project.icon %}
+                                <!-- Si tiene ícono definido en el Admin -->
+                                <img src="{% static project.icon %}" alt="Website Icon" style="width: 24px; height: 24px;">
+                            {% else %}
+                                <!-- Fallback genérico -->
+                                <small class="text-muted">Website 🌐</small>
+                            {% endif %}
+                            
+                        </a>
                     {% endif %}
-                    {% if project.url_repository %}
-                        <small class="text-muted ms-2"><a href="{{ project.url_repository }}" target="_blank"><img src="{% static 'img/githubico.webp' %}" alt="Github" class="githubico"></a></small>
-                    {% endif %}
+                    
+                    <!-- ...github link... -->
                 </div>
             </div>
         </div>
