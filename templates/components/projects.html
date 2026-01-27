@@ -57,7 +57,6 @@
                 <div class="card-footer d-flex align-items-center">
                     {% if project.url_site %}
                         <a href="{{ project.url_site }}" target="_blank" class="text-decoration-none me-3" title="Visit Website">
-                            
                             {% if project.icon %}
                                 <!-- Si tiene ícono definido en el Admin -->
                                 <img src="{% static project.icon %}" alt="Website Icon" style="width: 24px; height: 24px;">
@@ -65,11 +64,15 @@
                                 <!-- Fallback genérico -->
                                 <small class="text-muted">Website 🌐</small>
                             {% endif %}
-                            
                         </a>
                     {% endif %}
                     
-                    <!-- ...github link... -->
+                    {% if project.url_repository %}
+                        <!-- Asegúrate de tener 'ms-2' para separar los íconos si están juntos -->
+                        <a href="{{ project.url_repository }}" target="_blank" title="View Code" class="ms-2">
+                            <img src="{% static 'img/githubico.webp' %}" alt="Github" class="githubico" style="width: 24px; height: auto;">
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
