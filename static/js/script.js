@@ -39,6 +39,30 @@ $(document).ready(function() {
         localStorage.setItem('portfolioTheme', 'alternative');
     });
 
+    // --- Animación Fade-In al hacer Scroll ---
+    // Seleccionamos las secciones grandes (Proyectos, Skills, Contacto)
+    const sections = $('#projects, #skills, #contact');
+    
+    // Les agregamos la clase base CSS
+    sections.addClass('fade-in-section');
+
+    // Función para verificar si un elemento está en pantalla
+    function checkVisibility() {
+        const triggerBottom = $(window).height() * 0.85; // Se activa al 85% de la pantalla
+
+        sections.each(function() {
+            const top = $(this)[0].getBoundingClientRect().top;
+            
+            if (top < triggerBottom) {
+                $(this).addClass('is-visible');
+            }
+        });
+    }
+
+    // Ejecutar al cargar y al hacer scroll
+    $(window).on('scroll', checkVisibility);
+    checkVisibility(); // Ejecutar una vez al inicio por si ya se ven
+
     // Validación del formulario
     $("#contact-form").submit(function(event) {
         // Usamos .val() de JQuery para obtener valores
