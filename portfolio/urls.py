@@ -24,10 +24,9 @@ from django.views.i18n import JavaScriptCatalog
 # Importamos la vista 'home' desde tu app 'projects'
 from projects.views import home 
 
-# URLs sin prefijo de idioma (para cambio de idioma y JS catalog)
+# URLs sin prefijo de idioma (solo para el cambio de idioma directo)
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
-    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
 ]
 
 # URLs con prefijo de idioma (/en/, /es/)
@@ -36,6 +35,9 @@ urlpatterns += i18n_patterns(
     
     # Ruta raíz ('') -> Ejecuta la vista 'home'
     path('', home, name='home'),
+    
+    # Catálogo JS dentro de los patrones con prefijo para asegurar detección de idioma
+    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     
     prefix_default_language=False,  # No añade prefijo al idioma por defecto (inglés)
 )
