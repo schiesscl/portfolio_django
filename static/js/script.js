@@ -1,5 +1,36 @@
 // jQuery 4.0 Standard: Usar shorthand $(function(){}) en lugar de $(document).ready()
 $(function() {
+    
+    // ==========================================
+    // 0. INYECCIÓN DE CONTENIDO (DOM MANIPULATION)
+    // ==========================================
+    
+    // Texto de About Me trasladado desde HTML para protección y limpieza
+    const aboutParagraphs = [
+        "Land surveying Technician and Full Stack Java, JavaScript & Python developer with a solid base in web technologies such as <strong>HTML, CSS and JavaScript. Experienced in Bootstrap, MySQL, JQuery, Java, Spring Boot Node.js, express.js PostgreSQL, Python, React, Django and SQLite.</strong>",
+        "I am a professional who is committed to permanent development, with strong technical skills and work ethics, focused on creating efficient solutions to complex challenges.",
+        "My innate curiosity drives me to constantly explore new technologies and approaches, ensuring that I keep my knowledge up to date in a dynamic and constantly evolving environment. Among my strengths, I can highlight my open-mindedness and flexibility in my approach to work, which allows me to tackle projects from different perspectives and adapt quickly to change when necessary. Also, my perseverance and determination drive me to successfully achieve my goals, as I face challenges head-on until I find effective solutions.",
+        "I stand out for my analytical skills and critical thinking, with a meticulous approach at every stage of development. Persistence is one of my greatest strengths as I face challenges with determination to find effective solutions.",
+        "I am eager to contribute to the success of challenging and dynamic projects."
+    ];
+
+    const aboutContainer = $('#about-content');
+
+    // Inyectamos el contenido si el contenedor existe
+    if (aboutContainer.length) {
+        // JQuery 4.0: .map() y .append() siguen siendo el estándar robusto
+        // Usamos un fragmento de documento implícito al pasar un array de elementos a append para mejor rendimiento
+        const elements = aboutParagraphs.map(text => {
+            // Creamos el elemento <p> y asignamos HTML (para respetar las etiquetas strong)
+            return $('<p>').html(text); 
+        });
+        
+        aboutContainer.append(elements);
+    }
+
+    // ==========================================
+    // 1. FUNCIONALIDADES UI
+    // ==========================================
 
     // 1. Activar Tooltips (Bootstrap 5)
     $('[data-bs-toggle="tooltip"]').tooltip();
