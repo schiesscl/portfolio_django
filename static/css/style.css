@@ -20,7 +20,7 @@ body {
     background-color: #00A0E8; /* Color de respaldo */
 
     font-family: var(--font-text);
-    font-weight: 300;
+    /* ELIMINADO: font-weight: 300 (Se traslada a clase .fw-light en HTML) */
 }
 
 /* Pseudo-elementos para gestionar la transición del degradado del body */
@@ -59,7 +59,7 @@ main {
 /* VT323 - Títulos y elementos estructurales */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-tech);
-  text-transform: uppercase;
+  /* ELIMINADO: text-transform: uppercase (Se traslada a clase .text-uppercase en HTML) */
   letter-spacing: 1px;
   font-weight: 400;
 }
@@ -117,9 +117,9 @@ p {
 .navbar-nav .nav-link,
 .nav-menu a {
   font-family: var(--font-tech);
-  font-size: 1.5rem;
+  /* ELIMINADO: font-size: 1.5rem (Se traslada a clase .fs-4 en HTML) */
   letter-spacing: 1px;
-  text-transform: uppercase;
+  /* ELIMINADO: text-transform: uppercase (Se traslada a .text-uppercase en HTML) */
   transition: color 0.3s ease, opacity 0.3s ease;
 }
 
@@ -133,7 +133,7 @@ p {
 .card-title {
   font-family: var(--font-tech);
   font-size: 1.8rem;
-  text-transform: uppercase;
+  /* ELIMINADO: text-transform: uppercase (Se traslada a HTML) */
 }
 
 /* --- NUEVO CÓDIGO: Efectos de Hover en Imágenes de Proyectos --- */
@@ -177,7 +177,7 @@ p {
 .skill-name {
   font-family: var(--font-tech);
   font-size: 1.3rem;
-  text-transform: uppercase;
+  /* ELIMINADO: text-transform: uppercase (Se traslada a HTML) */
 }
 
 /* Espacio fijo para comentarios de versión */
@@ -210,7 +210,7 @@ textarea::placeholder {
 #contact-form input[type="submit"],
 #contact-form button[type="submit"] {
   font-family: var(--font-tech);
-  text-transform: uppercase;
+  /* ELIMINADO: text-transform: uppercase (Se traslada a HTML) */
   letter-spacing: 1px;
   background-color: #76a0d3;
   color: white;

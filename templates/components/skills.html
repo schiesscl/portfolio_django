@@ -2,7 +2,8 @@
 
 <!-- Skills (Dinámico desde BD) -->
 <div id="skills" class="container py-5">
-    <h2 class="text-center mb-4">Skills</h2>
+    <!-- Agregado text-uppercase -->
+    <h2 class="text-center mb-4 text-uppercase">Skills</h2>
     
     <div id="skillsCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-inner">
@@ -14,7 +15,8 @@
                         <img src="{% static skill.logo %}" class="skill-logo" alt="{{ skill.name }}" style="max-height: 100px;">
                     {% endif %}
                     
-                    <h5 class="mt-3">{{ skill.name }}</h5>
+                    <!-- Agregado text-uppercase -->
+                    <h5 class="mt-3 text-uppercase">{{ skill.name }}</h5>
                     <div class="skill-comment-space">{{ skill.version|default:"" }}</div>
                 </div>
             </div>

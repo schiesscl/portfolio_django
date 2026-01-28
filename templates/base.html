@@ -16,24 +16,27 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body class="text-white">
+<!-- AGREGADO: fw-light para reemplazar font-weight: 300 del CSS -->
+<body class="text-white fw-light">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg text-white">
         <div class="container-fluid">
+            <!-- Brand también lleva fuente tech pero size distinto, lo dejamos como está o agregamos text-uppercase si aplica -->
             <a class="navbar-brand text-white" href="#">Hans Schiess</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <!-- AGREGADO: text-uppercase fs-4 a cada nav-link -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-white" aria-current="page" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#about">About Me</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white text-uppercase fs-4" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#about">About Me</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#contact">Contact</a></li>
                     <!-- Mantén tu link a ES si quieres, o podemos hacerlo dinámico luego -->
-                    <li class="nav-item"><a class="nav-link active text-white" href="#">ES</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white text-uppercase fs-4" href="#">ES</a></li>
                 </ul>
             </div>
         </div>
