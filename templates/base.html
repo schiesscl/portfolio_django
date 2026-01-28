@@ -9,8 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- JQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+			integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+			crossorigin="anonymous"></script>
     <!-- Tus Estilos -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -50,7 +51,7 @@
             <!-- Ajusta este link a tu PDF real si lo tienes en static o externo -->
             <a href="https://drive.google.com/file/d/1Aa4RcRbumCImiN3ZD3aAAxWemM5grw-1/view?usp=sharing" target="_blank"><img src="{% static 'img/resume.webp' %}" alt="Resume" class="mx-2" style="width: 40px;"></a>
         </div>
-        <div><p>Created in Temuco, Chile © {% now "Y" %}</p></div>
+        <div><p>Developed with Django in Temuco, Chile © {% now "Y" %}</p></div>
         <div class="mt-2">
             <a href="https://github.com/schiesscl/portfolio_django/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
         </div>
