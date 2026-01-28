@@ -5,7 +5,7 @@ $(function() {
     // 0. INYECCIÓN DE CONTENIDO (DOM MANIPULATION)
     // ==========================================
     
-    // Texto de About Me trasladado desde HTML para protección y limpieza
+    // --- A. Texto About Me ---
     const aboutParagraphs = [
         "Land surveying Technician and Full Stack Java, JavaScript & Python developer with a solid base in web technologies such as <strong>HTML, CSS and JavaScript. Experienced in Bootstrap, MySQL, JQuery, Java, Spring Boot Node.js, express.js PostgreSQL, Python, React, Django and SQLite.</strong>",
         "I am a professional who is committed to permanent development, with strong technical skills and work ethics, focused on creating efficient solutions to complex challenges.",
@@ -15,17 +15,40 @@ $(function() {
     ];
 
     const aboutContainer = $('#about-content');
-
-    // Inyectamos el contenido si el contenedor existe
     if (aboutContainer.length) {
-        // JQuery 4.0: .map() y .append() siguen siendo el estándar robusto
-        // Usamos un fragmento de documento implícito al pasar un array de elementos a append para mejor rendimiento
-        const elements = aboutParagraphs.map(text => {
-            // Creamos el elemento <p> y asignamos HTML (para respetar las etiquetas strong)
-            return $('<p>').html(text); 
-        });
-        
+        const elements = aboutParagraphs.map(text => $('<p>').html(text));
         aboutContainer.append(elements);
+    }
+
+    // --- B. Formulario de Contacto ---
+    // Inyectamos el HTML completo del formulario
+    const contactFormHTML = `
+        <form action="https://formspree.io/f/mandqroa" class="w-75 mx-auto" id="contact-form" method="post">
+            <div class="mb-3">
+                <label for="contact-name" class="form-label">Name: </label>
+                <input type="text" class="form-control" id="contact-name" name="nombre" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="contact-subject" class="form-label">Subject:</label>
+                <input type="text" class="form-control" id="contact-subject" name="asunto" placeholder="Subject" required>
+            </div>
+            <div class="mb-3">
+                <label for="contact-email" class="form-label">Email: </label>
+                <input type="email" class="form-control" id="contact-email" name="correo" placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+                <label for="contact-message" class="form-label">Message:</label>
+                <textarea name="message" id="contact-message" class="form-control" placeholder="Your message here..." required></textarea>
+            </div>
+            <div class="py-3">
+                <input type="submit" class="btn btn-light text-uppercase" value="Send">
+            </div>
+        </form>
+    `;
+
+    const formContainer = $('#contact-form-container');
+    if (formContainer.length) {
+        formContainer.html(contactFormHTML);
     }
 
     // ==========================================
@@ -60,7 +83,6 @@ $(function() {
     }
 
     // Eventos de clic
-    // JQUERY 4.0 UPDATE: Se prefieren .on('click') sobre .click()
     btnDefault.on('click', function() {
         setThemeState('default');
         localStorage.setItem('portfolioTheme', 'default');
@@ -73,44 +95,38 @@ $(function() {
 
     // --- Animación Fade-In al hacer Scroll ---
     const sections = $('#projects, #skills, #contact');
-    
-    // Les agregamos la clase base CSS
     sections.addClass('fade-in-section');
 
-    // Función para verificar si un elemento está en pantalla
     function checkVisibility() {
-        const triggerBottom = $(window).height() * 0.85; // Se activa al 85% de la pantalla
-
+        const triggerBottom = $(window).height() * 0.85; 
         sections.each(function() {
-            // Optimización: 'this' ya es el elemento DOM nativo
             const top = this.getBoundingClientRect().top;
-            
             if (top < triggerBottom) {
                 $(this).addClass('is-visible');
             }
         });
     }
 
-    // Ejecutar al cargar y al hacer scroll
     $(window).on('scroll', checkVisibility);
-    checkVisibility(); // Ejecutar un chequeo inicial
+    checkVisibility(); 
 
-    // Validación del formulario
-    // JQUERY 4.0 UPDATE: Se prefiere .on('submit') sobre .submit()
+    // ==========================================
+    // 2. VALIDACIÓN (Debe ir DESPUÉS de la inyección)
+    // ==========================================
+    
+    // Al inyectar el form antes, JQuery puede encontrar '#contact-form' sin problemas
     $("#contact-form").on('submit', function(event) {
         const nombreVal = $("#contact-name").val();
         const asuntoVal = $("#contact-subject").val();
         const mensajeVal = $("#contact-message").val();
         
-        // JQUERY 4.0 UPDATE: Usar .trim() nativo de JS en lugar de utilidades deprecadas
-        // Esto evita que espacios en blanco pasen como válidos
         const nombre = nombreVal ? nombreVal.trim() : "";
         const asunto = asuntoVal ? asuntoVal.trim() : "";
         const mensaje = mensajeVal ? mensajeVal.trim() : "";
         
         // Validación básica
         if (nombre.length < 8 || asunto.length < 8 || mensaje.length < 15) {
-            event.preventDefault(); // Método estándar para evitar el envío
+            event.preventDefault(); 
             alert("Por favor revisa los campos:\n- Nombre: mínimo 8 caracteres\n- Asunto: mínimo 8 caracteres\n- Mensaje: mínimo 15 caracteres");
             return false;
         }
