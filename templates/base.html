@@ -42,14 +42,17 @@
                     
                     <!-- Botón de cambio de idioma -->
                     <li class="nav-item ms-lg-3 d-flex align-items-center">
+                        {% get_current_language as LANGUAGE_CODE %}
                         <form action="{% url 'set_language' %}" method="post" class="m-0">
                             {% csrf_token %}
-                            <input name="next" type="hidden" value="{{ request.path }}">
-                            {% get_current_language as LANGUAGE_CODE %}
+                            
                             {% if LANGUAGE_CODE == 'en' %}
+                                <input name="next" type="hidden" value="{{ request.path }}">
                                 <input name="language" type="hidden" value="es">
                                 <button type="submit" class="nav-link text-white text-uppercase fs-4 p-0 border-0 bg-transparent">ES</button>
                             {% else %}
+                                {# Al volver a inglés, usamos la raíz '/' para asegurar que no se quede atrapado en '/es/' #}
+                                <input name="next" type="hidden" value="/">
                                 <input name="language" type="hidden" value="en">
                                 <button type="submit" class="nav-link text-white text-uppercase fs-4 p-0 border-0 bg-transparent">EN</button>
                             {% endif %}
