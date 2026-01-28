@@ -1,9 +1,9 @@
-{% load static %}
+{% load static i18n %}
 
 <!-- Projects (Dinámico desde BD) -->
 <div id="projects" class="container py-5">
     <!-- Agregado text-uppercase -->
-    <h2 class="text-center mb-3 text-uppercase">Projects</h2>
+    <h2 class="text-center mb-3 text-uppercase">{% trans "Projects" %}</h2>
     <div class="row">
         {% for project in projects %}
         <div class="col-md-6 mb-3">
@@ -48,7 +48,7 @@
                     
                     {% if project.skills.all %}
                     <div class="mt-2">
-                        <small class="text-muted">Stack:</small><br>
+                        <small class="text-muted">{% trans "Stack:" %}</small><br>
                         {% for skill in project.skills.all %}
                             <span class="badge bg-secondary">{{ skill.name }}</span>
                         {% endfor %}
@@ -58,7 +58,7 @@
 
                 <div class="card-footer d-flex align-items-center">
                     {% if project.url_site %}
-                        <a href="{{ project.url_site }}" target="_blank" class="text-decoration-none me-3" title="Visit Website">
+                        <a href="{{ project.url_site }}" target="_blank" class="text-decoration-none me-3" title="{% trans 'Visit Website' %}">
                             {% if project.icon %}
                                 <!-- Si tiene ícono definido en el Admin -->
                                 <img src="{% static project.icon %}" alt="Website Icon" style="width: 24px; height: 24px;">
@@ -71,7 +71,7 @@
                     
                     {% if project.url_repository %}
                         <!-- Asegúrate de tener 'ms-2' para separar los íconos si están juntos -->
-                        <a href="{{ project.url_repository }}" target="_blank" title="View Code" class="ms-2">
+                        <a href="{{ project.url_repository }}" target="_blank" title="{% trans 'View Code' %}" class="ms-2">
                             <img src="{% static 'img/githubico.webp' %}" alt="Github" class="githubico" style="width: 24px; height: auto;">
                         </a>
                     {% endif %}

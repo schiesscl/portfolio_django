@@ -1,0 +1,121 @@
+# Hans Schiess Portfolio - JavaScript Spanish Translations
+# Copyright (C) 2026
+# This file is distributed under the MIT license.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Portfolio 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-28 05:37-0300\n"
+"PO-Revision-Date: 2026-01-28 05:40-0300\n"
+"Last-Translator: Hans Schiess\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\static\js\script.js:8
+msgid ""
+"Land surveying Technician and Full Stack Java, JavaScript & Python developer "
+"with a solid base in web technologies such as <strong>HTML, CSS and "
+"JavaScript. Experienced in Bootstrap, MySQL, JQuery, Java, Spring Boot "
+"Node.js, express.js PostgreSQL, Python, React, Django and SQLite.</strong>"
+msgstr ""
+"Técnico en Topografía y desarrollador Full Stack Java, JavaScript y Python "
+"con una sólida base en tecnologías web como <strong>HTML, CSS y JavaScript. "
+"Experiencia en Bootstrap, MySQL, JQuery, Java, Spring Boot, Node.js, "
+"express.js, PostgreSQL, Python, React, Django y SQLite.</strong>"
+
+#: .\static\js\script.js:9
+msgid ""
+"I am a professional who is committed to permanent development, with strong "
+"technical skills and work ethics, focused on creating efficient solutions to "
+"complex challenges."
+msgstr ""
+"Soy un profesional comprometido con el desarrollo permanente, con sólidas "
+"habilidades técnicas y ética de trabajo, enfocado en crear soluciones "
+"eficientes a desafíos complejos."
+
+#: .\static\js\script.js:10
+msgid ""
+"My innate curiosity drives me to constantly explore new technologies and "
+"approaches, ensuring that I keep my knowledge up to date in a dynamic and "
+"constantly evolving environment. Among my strengths, I can highlight my open-"
+"mindedness and flexibility in my approach to work, which allows me to tackle "
+"projects from different perspectives and adapt quickly to change when "
+"necessary. Also, my perseverance and determination drive me to successfully "
+"achieve my goals, as I face challenges head-on until I find effective "
+"solutions."
+msgstr ""
+"Mi curiosidad innata me impulsa a explorar constantemente nuevas tecnologías "
+"y enfoques, asegurando mantener mi conocimiento actualizado en un entorno "
+"dinámico y en constante evolución. Entre mis fortalezas, puedo destacar mi "
+"mente abierta y flexibilidad en mi enfoque de trabajo, lo que me permite "
+"abordar proyectos desde diferentes perspectivas y adaptarme rápidamente al "
+"cambio cuando es necesario. Además, mi perseverancia y determinación me "
+"impulsan a lograr mis metas con éxito, enfrentando los desafíos de frente "
+"hasta encontrar soluciones efectivas."
+
+#: .\static\js\script.js:11
+msgid ""
+"I stand out for my analytical skills and critical thinking, with a "
+"meticulous approach at every stage of development. Persistence is one of my "
+"greatest strengths as I face challenges with determination to find effective "
+"solutions."
+msgstr ""
+"Destaco por mis habilidades analíticas y pensamiento crítico, con un enfoque "
+"meticuloso en cada etapa del desarrollo. La persistencia es una de mis "
+"mayores fortalezas, ya que enfrento los desafíos con determinación para "
+"encontrar soluciones efectivas."
+
+#: .\static\js\script.js:12
+msgid ""
+"I am eager to contribute to the success of challenging and dynamic projects."
+msgstr ""
+"Estoy deseoso de contribuir al éxito de proyectos desafiantes y dinámicos."
+
+#: .\static\js\script.js:21
+msgid "Name:"
+msgstr "Nombre:"
+
+#: .\static\js\script.js:22
+msgid "Your Name"
+msgstr "Tu nombre"
+
+#: .\static\js\script.js:23
+msgid "Subject:"
+msgstr "Asunto:"
+
+#: .\static\js\script.js:24
+msgid "Subject"
+msgstr "Asunto"
+
+#: .\static\js\script.js:25
+msgid "Email:"
+msgstr "Correo electrónico:"
+
+#: .\static\js\script.js:27
+msgid "Message:"
+msgstr "Mensaje:"
+
+#: .\static\js\script.js:28
+msgid "Your message here..."
+msgstr "Tu mensaje aquí..."
+
+#: .\static\js\script.js:29
+msgid "Send"
+msgstr "Enviar"
+
+#: .\static\js\script.js:113
+msgid ""
+"Please check the fields:\n"
+"- Name: minimum 8 characters\n"
+"- Subject: minimum 8 characters\n"
+"- Message: minimum 15 characters"
+msgstr ""
+"Por favor revisa los campos:\n"
+"- Nombre: mínimo 8 caracteres\n"
+"- Asunto: mínimo 8 caracteres\n"
+"- Mensaje: mínimo 15 caracteres"

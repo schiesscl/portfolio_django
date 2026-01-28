@@ -1,6 +1,6 @@
-{% load static %}
+{% load static i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,12 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-4.0.0.js"
-			integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
-			crossorigin="anonymous"></script>
+            integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U="
+            crossorigin="anonymous"></script>
+    
+    <!-- Catálogo de traducciones de Django para JavaScript -->
+    <script src="{% url 'javascript-catalog' %}"></script>
+    
     <!-- Tus Estilos -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
@@ -30,13 +34,27 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <!-- AGREGADO: text-uppercase fs-4 a cada nav-link -->
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active text-white text-uppercase fs-4" aria-current="page" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#about">About Me</a></li>
-                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#contact">Contact</a></li>
-                    <!-- Mantén tu link a ES si quieres, o podemos hacerlo dinámico luego -->
-                    <li class="nav-item"><a class="nav-link active text-white text-uppercase fs-4" href="#">ES</a></li>
+                    <li class="nav-item"><a class="nav-link active text-white text-uppercase fs-4" aria-current="page" href="#">{% trans "Home" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#about">{% trans "About Me" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#projects">{% trans "Projects" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#skills">{% trans "Skills" %}</a></li>
+                    <li class="nav-item"><a class="nav-link text-white text-uppercase fs-4" href="#contact">{% trans "Contact" %}</a></li>
+                    
+                    <!-- Botón de cambio de idioma -->
+                    <li class="nav-item ms-2">
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.path }}">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% if LANGUAGE_CODE == 'en' %}
+                                <input name="language" type="hidden" value="es">
+                                <button type="submit" class="nav-link btn btn-link text-white text-uppercase fs-4 fw-bold p-0 border-0">ES</button>
+                            {% else %}
+                                <input name="language" type="hidden" value="en">
+                                <button type="submit" class="nav-link btn btn-link text-white text-uppercase fs-4 fw-bold p-0 border-0">EN</button>
+                            {% endif %}
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -54,7 +72,7 @@
             <!-- Ajusta este link a tu PDF real si lo tienes en static o externo -->
             <a href="https://drive.google.com/file/d/1Aa4RcRbumCImiN3ZD3aAAxWemM5grw-1/view?usp=sharing" target="_blank"><img src="{% static 'img/resume.webp' %}" alt="Resume" class="mx-2" style="width: 40px;"></a>
         </div>
-        <div><p>Developed with Django in Temuco, Chile © {% now "Y" %}</p></div>
+        <div><p>{% trans "Developed with Django in Temuco, Chile" %} © {% now "Y" %}</p></div>
         <div class="mt-2">
             <a href="https://github.com/schiesscl/portfolio_django/blob/main/LICENSE" target="_blank"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="MIT License"></a>
         </div>

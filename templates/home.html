@@ -1,15 +1,15 @@
 <!-- filepath: templates/home.html -->
 {% extends 'base.html' %}
-{% load static %}
+{% load static i18n %}
 
 {% block content %}
     <!-- Hero Section -->
     <header>
         <div class="container-fluid py-5">
             <!-- Agregado text-uppercase -->
-            <h1 class="display-5 fw-bold text-center text-uppercase">Portfolio</h1>
+            <h1 class="display-5 fw-bold text-center text-uppercase">{% trans "Portfolio" %}</h1>
             <h2 class="text-center text-uppercase">Hans Schiess<span class="cursor-blink">█</span></h2>
-            <p class="fs-4 text-center">Full Stack Java, Javascript & Python developer</p>
+            <p class="fs-4 text-center">{% trans "Full Stack Java, Javascript & Python developer" %}</p>
         </div>
     </header>
 
@@ -17,10 +17,9 @@
         <!-- About Me -->
         <div id="about" class="container">
             <!-- Agregado text-uppercase -->
-            <h2 class="text-center text-uppercase">About Me</h2>
+            <h2 class="text-center text-uppercase">{% trans "About Me" %}</h2>
             
-            <!-- CONTENIDO INYECTADO POR JAVASCRIPT (script.js) -->
-            <!-- El texto se genera dinámicamente para mayor seguridad y limpieza -->
+            <!-- CONTENIDO INYECTADO POR JAVASCRIPT (script.js) con gettext() -->
             <div id="about-content"></div>
         </div>
 
@@ -33,11 +32,10 @@
         <div id="contact" class="py-5">
             <div class="container">
                 <!-- Agregado text-uppercase -->
-                <h2 class="text-center pb-5 text-uppercase">Don't hesitate to contact me!</h2>
+                <h2 class="text-center pb-5 text-uppercase">{% trans "Don't hesitate to contact me!" %}</h2>
                 <div class="py-1">
                     
-                    <!-- FORMULARIO INYECTADO POR JAVASCRIPT (script.js) -->
-                    <!-- Se inyecta dinámicamente para limpieza y ofuscación básica contra bots -->
+                    <!-- FORMULARIO INYECTADO POR JAVASCRIPT (script.js) con gettext() -->
                     <div id="contact-form-container"></div>
 
                 </div>
