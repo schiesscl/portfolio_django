@@ -6,6 +6,7 @@ Optimized for PythonAnywhere (SQLite + WhiteNoise + Static Images).
 
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
 
@@ -20,11 +21,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SEGURIDAD
 # ==============================================================================
 
+# IMPORTANTE: Configurar SECRET_KEY en las variables de entorno de DigitalOcean
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key')
 
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+# DEBUG debe ser False en producción
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # PythonAnywhere se encarga de filtrar el dominio real
+# ALLOWED_HOSTS: Permitir dominios de DigitalOcean y localhost
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '.ondigitalocean.app',  # Soporta subdominios de App Platform
+    os.getenv('CUSTOM_DOMAIN', '*') # Opcional: tu dominio personalizado
+]
+
+# CSRF: Necesario para que el cambio de idioma funcione tras el despliegue
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ondigitalocean.app',
+    'https://' + os.getenv('CUSTOM_DOMAIN', 'localhost')
+]
 
 
 # ==============================================================================
@@ -46,10 +61,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # WhiteNoise: Sirve archivos estáticos de forma eficiente
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # LocaleMiddleware: Detecta y activa el idioma del usuario
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,7 +93,7 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 
 # ==============================================================================
-# BASE DE DATOS (SQLite)
+# BASE DE DATOS (MySQL para Producción / SQLite para Local)
 # ==============================================================================
 
 DATABASES = {
@@ -89,6 +102,13 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Si existe DATABASE_URL (en DigitalOcean), sobreescribimos la conexión
+if os.getenv('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 
 
 # ==============================================================================
@@ -107,20 +127,18 @@ TIME_ZONE = 'America/Santiago'
 USE_I18N = True
 USE_TZ = True
 
-# Idiomas disponibles
 LANGUAGES = [
     ('en', _('English')),
     ('es', _('Español')),
 ]
 
-# Ruta a los archivos de traducción
 LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
 
 # ==============================================================================
-# ESTÁTICOS (CSS, JS, IMÁGENES LOCALES)
+# ESTÁTICOS
 # ==============================================================================
 
 STATIC_URL = '/static/'
@@ -130,21 +148,14 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# Configuración de almacenamiento moderno (Django 4.2+)
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # WhiteNoise comprimido, pero no estricto (evita errores 500 si falta un archivo)
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
-# Proxy para PythonAnywhere (Gratuito) - Útil si necesitas HTTP request salientes en el futuro
-if 'PYTHONANYWHERE_DOMAIN' in os.environ:
-    proxy_address = "http://proxy.server:3128"
-    os.environ['http_proxy'] = proxy_address
-    os.environ['https_proxy'] = proxy_address
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
