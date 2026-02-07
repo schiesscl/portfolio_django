@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']  # PythonAnywhere se encarga de filtrar el dominio real
 # ==============================================================================
 
 INSTALLED_APPS = [
+    'modeltranslation',  # <--- Debe ir ANTES de admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -118,6 +119,11 @@ LOCALE_PATHS = [
     BASE_DIR / 'locale',
 ]
 
+# Asegúrate de tener configurados los lenguajes si aún no están
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Spanish'),
+]
 
 # ==============================================================================
 # ESTÁTICOS (CSS, JS, IMÁGENES LOCALES)
