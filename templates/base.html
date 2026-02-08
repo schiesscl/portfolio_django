@@ -70,10 +70,35 @@
     <!-- Footer -->
     <footer class="text-white text-center py-5">
         <div>
-            <a href="https://github.com/schiesscl" target="_blank"><img src="{% static 'img/github.webp' %}" alt="Github" class="mx-2" style="width: 40px;"></a>
-            <a href="https://www.linkedin.com/in/hans-schiess" target="_blank"><img src="{% static 'img/linkedin.webp' %}" alt="Linkedin" class="mx-2" style="width: 40px;"></a>
-            <!-- Ajusta este link a tu PDF real si lo tienes en static o externo -->
-            <a href="https://drive.google.com/file/d/1Aa4RcRbumCImiN3ZD3aAAxWemM5grw-1/view?usp=sharing" target="_blank"><img src="{% static 'img/resume.webp' %}" alt="Resume" class="mx-2" style="width: 40px;"></a>
+            <!-- GitHub (Común para todos) -->
+            <a href="https://github.com/schiesscl" target="_blank">
+                <img src="{% static 'img/github.webp' %}" alt="Github" class="mx-2" style="width: 40px;">
+            </a>
+
+            <!-- Lógica para Idiomas: Español vs Inglés (Default) -->
+            {% if LANGUAGE_CODE == 'es' %}
+                <!-- LINKEDIN ESPAÑOL -->
+                <a href="https://www.linkedin.com/in/hans-schiess/?locale=es_ES" target="_blank">
+                    <img src="{% static 'img/linkedin.webp' %}" alt="Linkedin" class="mx-2" style="width: 40px;">
+                </a>
+                
+                <!-- CURRICULUM ESPAÑOL -->
+                <a href="{% static 'docs/Hans_Schiess-1.pdf' %}" target="_blank">
+                    <img src="{% static 'img/resume.webp' %}" alt="Curriculum Vitae" class="mx-2" style="width: 40px;">
+                </a>
+
+            {% else %}
+                <!-- LINKEDIN INGLÉS -->
+                <a href="https://www.linkedin.com/in/hans-schiess/?locale=en_US" target="_blank">
+                    <img src="{% static 'img/linkedin.webp' %}" alt="Linkedin" class="mx-2" style="width: 40px;">
+                </a>
+
+                <!-- CURRICULUM INGLÉS -->
+                <a href="{% static 'docs/Hans_Schiess-2026-en.pdf' %}" target="_blank">
+                    <img src="{% static 'img/resume.webp' %}" alt="Resume" class="mx-2" style="width: 40px;">
+                </a>
+            {% endif %}
+            
         </div>
         <div><p>{% trans "Developed with Django in Temuco, Chile" %} © {% now "Y" %}</p></div>
         <div class="mt-2">
