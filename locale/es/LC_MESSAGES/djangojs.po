@@ -17,13 +17,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\static\js\script.js:8
-#, fuzzy
-#| msgid ""
-#| "Land surveying Technician and Full Stack Java, JavaScript & Python "
-#| "developer with a solid base in web technologies such as <strong>HTML, CSS "
-#| "and JavaScript. Experienced in Bootstrap, MySQL, JQuery, Java, Spring "
-#| "Boot Node.js, express.js PostgreSQL, Python, React, Django and SQLite.</"
-#| "strong>"
 msgid ""
 "Land surveying Technician and Full Stack Java, JavaScript & Python developer "
 "with a solid base in web technologies such as <strong>HTML, CSS and "
