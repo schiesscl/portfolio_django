@@ -8,6 +8,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
+import dj_database_url 
 
 # Cargar variables de entorno
 load_dotenv()
@@ -22,9 +23,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key')
 
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # PythonAnywhere se encarga de filtrar el dominio real
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '*.herokuapp.com',
+    'schiesscl.dev',
+    'www.schiesscl.dev',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.herokuapp.com',
+    'https://schiesscl.dev',
+    'https://www.schiesscl.dev',
+]
 
 
 # ==============================================================================
@@ -86,10 +99,19 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'portfolio_db',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
+# Heroku: Usar DATABASE_URL si está disponible
+db_from_env = dj_database_url.config(conn_max_age=600)
+if db_from_env:
+    DATABASES['default'].update(db_from_env)
 
 
 # ==============================================================================
@@ -146,11 +168,5 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
-
-# Proxy para PythonAnywhere (Gratuito) - Útil si necesitas HTTP request salientes en el futuro
-if 'PYTHONANYWHERE_DOMAIN' in os.environ:
-    proxy_address = "http://proxy.server:3128"
-    os.environ['http_proxy'] = proxy_address
-    os.environ['https_proxy'] = proxy_address
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
