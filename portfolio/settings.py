@@ -100,15 +100,15 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'portfolio_db',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'portfolio_db'),           # <--- LEER DE ENV
+        'USER': os.getenv('DB_USER', 'postgres'),               # <--- LEER DE ENV
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),               # <--- LEER DE ENV
+        'HOST': os.getenv('DB_HOST', 'localhost'),              # <--- LEER DE ENV
+        'PORT': os.getenv('DB_PORT', '5432'),                   # <--- LEER DE ENV
     }
 }
 
-# Heroku: Usar DATABASE_URL si está disponible
+# Heroku: Usar DATABASE_URL si está disponible (automático)
 db_from_env = dj_database_url.config(conn_max_age=600)
 if db_from_env:
     DATABASES['default'].update(db_from_env)
