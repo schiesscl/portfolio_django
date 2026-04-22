@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 venv/
 .env
+.env.local
+.env.*
+*.env
 
 # Django
 db.sqlite3
@@ -24,4 +27,10 @@ assets/
 .claude/
 .gemini/
 .opencode/
-.windsurf/
+.windsurf
+
+CLAUDE.md
+ca-certificates.crt
+*.crt
+
+skills-lock.json
