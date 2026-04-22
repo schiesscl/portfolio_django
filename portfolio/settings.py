@@ -27,7 +27,8 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
     'localhost', 
-    '127.0.0.1', 
+    '127.0.0.1',
+    'schiesscl-73314be36f0b.herokuapp.com',
     '*.herokuapp.com',
     'schiesscl.dev',
     'www.schiesscl.dev',
