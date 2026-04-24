@@ -279,7 +279,7 @@ footer img:hover {
     background-color: transparent;
     cursor: pointer;
     padding: 0;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
 }
 
 .theme-btn:hover {
@@ -288,6 +288,14 @@ footer img:hover {
 
 .theme-btn.active {
     background-color: black;
+}
+
+body.theme-dark .theme-btn {
+    border: 2px solid white;
+}
+
+body.theme-dark .theme-btn.active {
+    background-color: white;
 }
 
 /* ========================================
@@ -313,6 +321,16 @@ footer img:hover {
 #btn-back-to-top:hover {
     transform: scale(1.1);
     background-color: #d68aab;
+}
+
+body.theme-dark #btn-back-to-top {
+    background-color: #5AFF9D;
+    box-shadow: 0 0 20px rgba(90, 255, 157, 0.5);
+}
+
+body.theme-dark #btn-back-to-top:hover {
+    background-color: #42DDA5;
+    box-shadow: 0 0 30px rgba(90, 255, 157, 0.8);
 }
 
 /* ========================================
@@ -379,7 +397,7 @@ body.theme-dark .card-title {
 }
 
 body.theme-dark .card-text {
-    color: #e0e0e0;
+    color: #ffffff;
 }
 
 body.theme-dark .badge {
