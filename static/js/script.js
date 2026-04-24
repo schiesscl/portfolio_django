@@ -78,11 +78,14 @@ $(function() {
         if (themeName === 'alternative') {
             body.addClass('theme-alternative');
             btnAlt.addClass('active');
+            $('html').attr('data-bs-theme', 'light');
         } else if (themeName === 'dark') {
             body.addClass('theme-dark');
             btnDark.addClass('active');
+            $('html').attr('data-bs-theme', 'dark');
         } else {
             btnDefault.addClass('active');
+            $('html').attr('data-bs-theme', 'light');
         }
     }
 

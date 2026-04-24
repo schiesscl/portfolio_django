@@ -359,7 +359,8 @@ body.theme-dark {
 }
 
 body.theme-dark .navbar {
-    background-color: rgba(0, 50, 85, 0.95) !important;
+    background-color: #000000 !important;
+    border-bottom: 2px solid #29D6FF;
 }
 
 body.theme-dark h2,
@@ -426,6 +427,30 @@ body.theme-dark a {
 body.theme-dark a:hover {
     color: #5AFF9D;
     text-shadow: 0 0 10px rgba(90, 255, 157, 0.5);
+}
+
+body.theme-dark footer {
+    background-color: #5AFF9D;
+    color: #000000 !important;
+    border-top: 2px solid #29D6FF;
+}
+
+body.theme-dark footer a {
+    color: #000000;
+}
+
+body.theme-dark footer a:hover {
+    color: #003255;
+    text-shadow: none;
+}
+
+body.theme-dark footer p {
+    color: #000000;
+    margin: 0;
+}
+
+body.theme-dark footer img {
+    filter: brightness(0);
 }
 
 /* ========================================
