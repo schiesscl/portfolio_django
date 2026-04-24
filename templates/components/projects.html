@@ -44,7 +44,7 @@
                 <div class="card-body">
                     <!-- Agregado text-uppercase -->
                     <h5 class="card-title text-uppercase">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.description }}</p>
+                    <p class="card-text">{{ project.description|linebreaks }}</p>
                     
                     {% if project.skills.all %}
                     <div class="mt-2">
