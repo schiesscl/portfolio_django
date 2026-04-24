@@ -65,16 +65,24 @@ $(function() {
     const body = $('body');
     const btnDefault = $('#btn-theme-default');
     const btnAlt = $('#btn-theme-alt');
+    const btnDark = $('#btn-theme-dark');
 
     function setThemeState(themeName) {
+        // Remove all theme classes
+        body.removeClass('theme-alternative theme-dark');
+        btnDefault.removeClass('active');
+        btnAlt.removeClass('active');
+        btnDark.removeClass('active');
+        
+        // Apply selected theme
         if (themeName === 'alternative') {
             body.addClass('theme-alternative');
             btnAlt.addClass('active');
-            btnDefault.removeClass('active');
+        } else if (themeName === 'dark') {
+            body.addClass('theme-dark');
+            btnDark.addClass('active');
         } else {
-            body.removeClass('theme-alternative');
             btnDefault.addClass('active');
-            btnAlt.removeClass('active');
         }
     }
 
@@ -83,6 +91,7 @@ $(function() {
 
     btnDefault.on('click', () => { setThemeState('default'); localStorage.setItem('portfolioTheme', 'default'); });
     btnAlt.on('click', () => { setThemeState('alternative'); localStorage.setItem('portfolioTheme', 'alternative'); });
+    btnDark.on('click', () => { setThemeState('dark'); localStorage.setItem('portfolioTheme', 'dark'); });
 
     // Scroll Fade-In
     const sections = $('#projects, #skills, #contact');

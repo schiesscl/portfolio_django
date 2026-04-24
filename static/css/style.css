@@ -342,6 +342,93 @@ body.theme-alternative #contact-form button[type="submit"]:hover {
 }
 
 /* ========================================
+   11B. TEMA OSCURO (DARK MODE)
+   ======================================== */
+/* Paleta vibrante para modo oscuro con colores fluorescentes */
+body.theme-dark::before {
+    background-image: linear-gradient(to right, #000000, #003255, #0064AA, #168182, #2B9D5A, #2ABAAC, #29D6FF, #42DDA5, #5AFF9D);
+    opacity: 1;
+}
+
+body.theme-dark::after {
+    opacity: 0;
+}
+
+body.theme-dark {
+    background-color: #000000;
+}
+
+body.theme-dark .navbar {
+    background-color: rgba(0, 50, 85, 0.95) !important;
+}
+
+body.theme-dark h2,
+body.theme-dark h1 {
+    color: #5AFF9D;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+body.theme-dark .card {
+    background-color: rgba(0, 100, 170, 0.15);
+    border: 1px solid #29D6FF;
+}
+
+body.theme-dark .card-title {
+    color: #42DDA5;
+}
+
+body.theme-dark .card-text {
+    color: #e0e0e0;
+}
+
+body.theme-dark .badge {
+    background-color: #168182 !important;
+    color: #5AFF9D;
+}
+
+body.theme-dark #contact-form input[type="submit"],
+body.theme-dark #contact-form button[type="submit"] {
+    background-color: #2ABAAC;
+    color: #000000;
+    border: 2px solid #29D6FF;
+}
+
+body.theme-dark #contact-form input[type="submit"]:hover,
+body.theme-dark #contact-form button[type="submit"]:hover {
+    background-color: #29D6FF;
+    color: #000000;
+    box-shadow: 0 0 20px rgba(41, 214, 255, 0.6);
+}
+
+body.theme-dark .form-control,
+body.theme-dark textarea {
+    background-color: rgba(0, 100, 170, 0.2);
+    border: 1px solid #2ABAAC;
+    color: #e0e0e0;
+}
+
+body.theme-dark .form-control:focus,
+body.theme-dark textarea:focus {
+    background-color: rgba(0, 100, 170, 0.3);
+    border-color: #29D6FF;
+    box-shadow: 0 0 10px rgba(41, 214, 255, 0.5);
+    color: #5AFF9D;
+}
+
+body.theme-dark .text-muted {
+    color: #42DDA5 !important;
+}
+
+body.theme-dark a {
+    color: #29D6FF;
+}
+
+body.theme-dark a:hover {
+    color: #5AFF9D;
+    text-shadow: 0 0 10px rgba(90, 255, 157, 0.5);
+}
+
+/* ========================================
    12. RESPONSIVE - MÓVILES Y TABLETS
    ======================================== */
 @media (max-width: 768px) {
