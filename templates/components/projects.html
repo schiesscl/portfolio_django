@@ -6,7 +6,7 @@
     <h2 class="text-center mb-3 text-uppercase">{% trans "Projects" %}</h2>
     <div class="row">
         {% for project in projects %}
-        <div class="col-md-6 mb-3">
+        <div class="col-md-4 mb-3">
             <div class="card h-100 text-dark">
                 {% if project.url_site %}
                     <a href="{{ project.url_site }}" class="card-img-link" target="_blank">
