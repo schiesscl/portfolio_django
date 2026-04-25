@@ -40,6 +40,9 @@ CSRF_TRUSTED_ORIGINS = [
     'https://www.schiesscl.dev',
 ]
 
+# SSL
+SECURE_SSL_REDIRECT = not DEBUG
+
 
 # ==============================================================================
 # APLICACIONES
