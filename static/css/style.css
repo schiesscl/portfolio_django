@@ -247,7 +247,7 @@ footer {
 }
 
 footer img {
-    width: 40px;
+    width: 60px;
     height: auto;
     margin: 0 10px;
     transition: transform 0.3s ease;
@@ -397,7 +397,7 @@ body.theme-dark .card-title {
 }
 
 body.theme-dark .card-text {
-    color: #ffffff;
+    color: #e0e0e0;
 }
 
 body.theme-dark .badge {
@@ -467,8 +467,12 @@ body.theme-dark footer p {
     margin: 0;
 }
 
-body.theme-dark footer img {
+body.theme-dark footer img:not([alt="MIT License"]) {
     filter: brightness(0);
+}
+
+body.theme-dark footer img[alt="MIT License"] {
+    filter: brightness(1.2) contrast(1.1);
 }
 
 /* ========================================
