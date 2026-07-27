@@ -2,82 +2,80 @@
 
 <!-- Projects (Dinámico desde BD) -->
 <div id="projects" class="container py-5">
-    <!-- Agregado text-uppercase -->
-    <h2 class="text-center mb-3 text-uppercase">{% trans "Projects" %}</h2>
-    <div class="row">
-        {% for project in projects %}
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 text-dark">
-                {% if project.url_site %}
-                    <a href="{{ project.url_site }}" class="card-img-link" target="_blank">
-                {% else %}
-                    <div class="card-img-link">
-                {% endif %}
-                    
-                    <div class="card-img-wrapper">
-                        <picture>
-                            {% if project.image_desktop %}
-                                <!-- Desktop -->
-                                <source media="(min-width: 992px)" srcset="{% static project.image_desktop %}">
-                                
-                                <!-- Tablet -->
-                                {% if project.image_tablet %}
-                                    <source media="(min-width: 576px)" srcset="{% static project.image_tablet %}">
-                                {% endif %}
-                                
-                                <!-- Mobile -->
-                                {% if project.image_mobile %}
-                                    <img src="{% static project.image_mobile %}" class="card-img-top" alt="{{ project.title }}">
-                                {% else %}
-                                    <img src="{% static project.image_desktop %}" class="card-img-top" alt="{{ project.title }}">
-                                {% endif %}
-                            {% endif %}
-                        </picture>
-                    </div>
+    <h2 class="text-center mb-4 text-uppercase">{% trans "Projects" %}</h2>
 
-                {% if project.url_site %}
-                    </a>
-                {% else %}
-                    </div>
-                {% endif %}
+    {% if projects|length <= 3 %}
+        <!-- Cuadrícula estática cuando hay 3 o menos proyectos -->
+        <div class="row justify-content-center">
+            {% for project in projects %}
+                {% include 'components/project_card.html' with col_class='col-md-4 mb-3' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Carrusel dinámico cuando hay 4 o más proyectos -->
 
-                <div class="card-body">
-                    <!-- Agregado text-uppercase -->
-                    <h5 class="card-title text-uppercase">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.description|linebreaks }}</p>
-                    
-                    {% if project.skills.all %}
-                    <div class="mt-2">
-                        <small class="text-muted">{% trans "Stack:" %}</small><br>
-                        {% for skill in project.skills.all %}
-                            <span class="badge bg-secondary">{{ skill.name }}</span>
+        <!-- VISTA DESKTOP / TABLET (≥ 768px): 3 proyectos por diapositiva -->
+        <div id="projectsCarouselDesktop" class="carousel slide d-none d-md-block px-4 px-md-5 pb-4" data-bs-touch="true">
+            <!-- Puntos indicadores -->
+            <div class="carousel-indicators mb-0" style="bottom: -25px;">
+                {% for slide in project_slides_desktop %}
+                <button type="button" data-bs-target="#projectsCarouselDesktop" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+
+            <div class="carousel-inner">
+                {% for slide in project_slides_desktop %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="row justify-content-center">
+                        {% for project in slide %}
+                            {% include 'components/project_card.html' with col_class='col-md-4 mb-3' %}
                         {% endfor %}
                     </div>
-                    {% endif %}
                 </div>
-
-                <div class="card-footer d-flex align-items-center">
-                    {% if project.url_site %}
-                        <a href="{{ project.url_site }}" target="_blank" class="text-decoration-none me-3" title="{% trans 'Visit Website' %}">
-                            {% if project.icon %}
-                                <!-- Si tiene ícono definido en el Admin -->
-                                <img src="{% static project.icon %}" alt="Website Icon" style="width: 24px; height: 24px;">
-                            {% else %}
-                                <!-- Fallback genérico -->
-                                <small class="text-muted">Website 🌐</small>
-                            {% endif %}
-                        </a>
-                    {% endif %}
-                    
-                    {% if project.url_repository %}
-                        <!-- Asegúrate de tener 'ms-2' para separar los íconos si están juntos -->
-                        <a href="{{ project.url_repository }}" target="_blank" title="{% trans 'View Code' %}" class="ms-2">
-                            <img src="{% static 'img/githubico.webp' %}" alt="Github" class="githubico" style="width: 24px; height: auto;">
-                        </a>
-                    {% endif %}
-                </div>
+                {% endfor %}
             </div>
+
+            <!-- Controles previo / siguiente -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarouselDesktop" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "Previous" %}</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectsCarouselDesktop" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "Next" %}</span>
+            </button>
         </div>
-        {% endfor %}
-    </div>
+
+        <!-- VISTA MÓVIL (< 768px): 1 proyecto por diapositiva -->
+        <div id="projectsCarouselMobile" class="carousel slide d-block d-md-none px-4 pb-4" data-bs-touch="true">
+            <!-- Puntos indicadores -->
+            <div class="carousel-indicators mb-0" style="bottom: -25px;">
+                {% for slide in project_slides_mobile %}
+                <button type="button" data-bs-target="#projectsCarouselMobile" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+
+            <div class="carousel-inner">
+                {% for slide in project_slides_mobile %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <div class="row justify-content-center">
+                        {% for project in slide %}
+                            {% include 'components/project_card.html' with col_class='col-12 mb-3' %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Controles previo / siguiente -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarouselMobile" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "Previous" %}</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#projectsCarouselMobile" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">{% trans "Next" %}</span>
+            </button>
+        </div>
+    {% endif %}
 </div>

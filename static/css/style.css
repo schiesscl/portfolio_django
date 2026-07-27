@@ -272,30 +272,50 @@ footer img:hover {
 }
 
 .theme-btn {
-    width: 20px;
-    height: 20px;
-    border: 2px solid black;
+    width: 22px;
+    height: 22px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 50%;
-    background-color: transparent;
     cursor: pointer;
     padding: 0;
-    transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+#btn-theme-default {
+    background: linear-gradient(135deg, #00A0E8, #ECA0BE);
+}
+
+#btn-theme-alt {
+    background: linear-gradient(135deg, #838885, #c1a0a0);
+}
+
+#btn-theme-dark {
+    background: linear-gradient(135deg, #003255, #5AFF9D);
+}
+
+#btn-theme-citrus {
+    background: linear-gradient(135deg, #b2f802, #dcb935);
 }
 
 .theme-btn:hover {
-    transform: scale(1.2);
+    transform: scale(1.25);
+    border-color: #000;
 }
 
 .theme-btn.active {
-    background-color: black;
+    transform: scale(1.25);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px #000000, 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
 body.theme-dark .theme-btn {
-    border: 2px solid white;
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 body.theme-dark .theme-btn.active {
-    background-color: white;
+    border-color: #5AFF9D;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 12px rgba(90, 255, 157, 0.6);
 }
 
 /* ========================================
@@ -473,6 +493,204 @@ body.theme-dark footer img:not([alt="MIT License"]) {
 
 body.theme-dark footer img[alt="MIT License"] {
     filter: brightness(1.2) contrast(1.1);
+}
+
+/* ========================================
+   11C. TEMA CITRUS (LIME & GOLD)
+   ======================================== */
+body.theme-citrus::before {
+    background-image: linear-gradient(135deg, #b2f802 0%, #c8d617 50%, #dcb935 100%);
+    opacity: 1;
+}
+
+body.theme-citrus::after {
+    opacity: 0;
+}
+
+body.theme-citrus {
+    color: #121603;
+}
+
+/* Navbar sofisticada oscura con borde de neón lime */
+body.theme-citrus .navbar {
+    background-color: rgba(20, 24, 6, 0.88) !important;
+    border-bottom: 2px solid #b2f802;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+body.theme-citrus .navbar-nav .nav-link {
+    color: #f0f4db !important;
+}
+
+body.theme-citrus .navbar-nav .nav-link:hover {
+    color: #b2f802 !important;
+    text-shadow: 0 0 8px rgba(178, 248, 2, 0.4);
+}
+
+/* Encabezados de alto contraste */
+body.theme-citrus h1,
+body.theme-citrus h2,
+body.theme-citrus h3,
+body.theme-citrus h4,
+body.theme-citrus h5,
+body.theme-citrus h6 {
+    color: #121603;
+    text-shadow: none;
+}
+
+body.theme-citrus #hero h1,
+body.theme-citrus .hero h1 {
+    color: #121603;
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+}
+
+/* Tarjetas en Glassmorphism claro */
+body.theme-citrus .card {
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(220, 185, 53, 0.45);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-citrus .card-title {
+    color: #121603;
+}
+
+body.theme-citrus .card-text,
+body.theme-citrus .description {
+    color: #242c07;
+}
+
+body.theme-citrus .badge {
+    background-color: #141804 !important;
+    color: #b2f802;
+}
+
+body.theme-citrus .skill-comment-space {
+    color: #1c2206;
+    font-weight: 500;
+}
+
+/* Formulario de contacto */
+body.theme-citrus .form-control,
+body.theme-citrus textarea {
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(20, 24, 6, 0.3);
+    color: #121603;
+}
+
+body.theme-citrus .form-control:focus,
+body.theme-citrus textarea:focus {
+    background-color: #ffffff;
+    border-color: #dcb935;
+    box-shadow: 0 0 10px rgba(220, 185, 53, 0.4);
+    color: #121603;
+}
+
+body.theme-citrus #contact-form input[type="submit"],
+body.theme-citrus #contact-form button[type="submit"] {
+    background-color: #141804;
+    color: #b2f802;
+    border: 2px solid #dcb935;
+}
+
+body.theme-citrus #contact-form input[type="submit"]:hover,
+body.theme-citrus #contact-form button[type="submit"]:hover {
+    background-color: #dcb935;
+    color: #141804;
+    box-shadow: 0 0 18px rgba(220, 185, 53, 0.6);
+}
+
+/* Botón Volver Arriba */
+body.theme-citrus #btn-back-to-top {
+    background-color: #141804;
+    border: 2px solid #b2f802;
+    box-shadow: 0 4px 15px rgba(20, 24, 6, 0.3);
+}
+
+body.theme-citrus #btn-back-to-top svg {
+    fill: #b2f802;
+}
+
+body.theme-citrus #btn-back-to-top:hover {
+    background-color: #b2f802;
+    border-color: #141804;
+    box-shadow: 0 0 20px rgba(178, 248, 2, 0.7);
+}
+
+body.theme-citrus #btn-back-to-top:hover svg {
+    fill: #141804;
+}
+
+/* Footer */
+body.theme-citrus footer {
+    background-color: #141804;
+    color: #b2f802 !important;
+    border-top: 2px solid #dcb935;
+}
+
+body.theme-citrus footer a {
+    color: #dcb935;
+}
+
+body.theme-citrus footer a:hover {
+    color: #b2f802;
+}
+
+body.theme-citrus footer p {
+    color: #e0e8c0;
+}
+
+/* ========================================
+   11D. ESTILOS DE CARRUSEL DE PROYECTOS
+   ======================================== */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 45px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid transparent;
+    margin: 0 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-indicators .active {
+    background-color: #000;
+    transform: scale(1.25);
+}
+
+body.theme-dark .carousel-indicators [data-bs-target] {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+body.theme-dark .carousel-indicators .active {
+    background-color: #5AFF9D;
+    box-shadow: 0 0 8px rgba(90, 255, 157, 0.8);
+}
+
+body.theme-citrus .carousel-indicators [data-bs-target] {
+    background-color: rgba(20, 24, 6, 0.4);
+}
+
+body.theme-citrus .carousel-indicators .active {
+    background-color: #141804;
+    border-color: #dcb935;
+    transform: scale(1.25);
 }
 
 /* ========================================

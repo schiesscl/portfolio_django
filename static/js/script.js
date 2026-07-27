@@ -66,13 +66,15 @@ $(function() {
     const btnDefault = $('#btn-theme-default');
     const btnAlt = $('#btn-theme-alt');
     const btnDark = $('#btn-theme-dark');
+    const btnCitrus = $('#btn-theme-citrus');
 
     function setThemeState(themeName) {
         // Remove all theme classes
-        body.removeClass('theme-alternative theme-dark');
+        body.removeClass('theme-alternative theme-dark theme-citrus');
         btnDefault.removeClass('active');
         btnAlt.removeClass('active');
         btnDark.removeClass('active');
+        btnCitrus.removeClass('active');
         
         // Apply selected theme
         if (themeName === 'alternative') {
@@ -83,6 +85,10 @@ $(function() {
             body.addClass('theme-dark');
             btnDark.addClass('active');
             $('html').attr('data-bs-theme', 'dark');
+        } else if (themeName === 'citrus') {
+            body.addClass('theme-citrus');
+            btnCitrus.addClass('active');
+            $('html').attr('data-bs-theme', 'light');
         } else {
             btnDefault.addClass('active');
             $('html').attr('data-bs-theme', 'light');
@@ -95,6 +101,7 @@ $(function() {
     btnDefault.on('click', () => { setThemeState('default'); localStorage.setItem('portfolioTheme', 'default'); });
     btnAlt.on('click', () => { setThemeState('alternative'); localStorage.setItem('portfolioTheme', 'alternative'); });
     btnDark.on('click', () => { setThemeState('dark'); localStorage.setItem('portfolioTheme', 'dark'); });
+    btnCitrus.on('click', () => { setThemeState('citrus'); localStorage.setItem('portfolioTheme', 'citrus'); });
 
     // Scroll Fade-In
     const sections = $('#projects, #skills, #contact');
