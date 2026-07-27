@@ -8,10 +8,9 @@ def home(request):
     
     n_projects = len(projects)
     if n_projects > 3:
-        # Ventana deslizante continua: muestra 3 proyectos siempre (ej. 1,2,3 luego 2,3,4 etc.)
+        # Ventana deslizante lineal sin wrap-around (ej. 1,2,3 luego 2,3,4)
         project_slides_desktop = [
-            [projects[(i + j) % n_projects] for j in range(3)]
-            for i in range(n_projects)
+            projects[i:i + 3] for i in range(n_projects - 2)
         ]
     else:
         project_slides_desktop = [projects]
